@@ -20,7 +20,6 @@ export default function SingleProperty() {
   const param = useParams();
   const { userId } = useGetUser();
   const { data: property, isLoading } = useGetSingleProperty(param?.id);
-  console.log("🚀 ~ SingleProperty ~ property:", property);
 
   const { data } = useGetCartList(userId);
   const [mainImage, setMainImage] = useState<string>(
@@ -32,7 +31,9 @@ export default function SingleProperty() {
   const router = useRouter();
   const cartItems = data?.cartItems || [];
 
-  const isInCart = cartItems.some((item: any) => item.propertyId === param.id);
+  const isInCart = cartItems.some(
+    (item: { propertyId: string }) => item.propertyId === param.id
+  );
 
   useEffect(() => {
     if (property?.images?.length > 0) {
@@ -76,7 +77,6 @@ export default function SingleProperty() {
   return (
     <div className="container p-6 md:p-12 ">
       <div className="flex flex-col md:flex-row md:space-x-8">
-        {/* Images */}
         <div className="w-full md:w-1/2 mb-6 md:mb-0">
           <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden">
             <Image
@@ -108,7 +108,6 @@ export default function SingleProperty() {
           )}
         </div>
 
-        {/* Property Details */}
         <div className="w-full md:w-1/2">
           <h1 className="text-4xl font-bold mb-4 text-gray-900">
             {property.title}

@@ -77,6 +77,9 @@ export default function Properties() {
             <option value="">Location</option>
             <option value="Mumbai">Mumbai</option>
             <option value="Bangalore">Bangalore</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Goa">Goa</option>
+            <option value="Pune">Pune</option>
           </select>
 
           <select

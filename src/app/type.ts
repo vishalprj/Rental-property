@@ -23,8 +23,19 @@ export type CartPayload = {
   checkOutDate: string | undefined;
 };
 
+
 export type RemoveCartPayload = {
   userId: string | null;
   cartId: string;
   cartItemId: string;
+};
+
+export type CartItem = {
+  id: string;
+  property: Property;
+};
+
+export type CartData = {
+  cartItems: CartItem[];
+  totalCost: number;
 };

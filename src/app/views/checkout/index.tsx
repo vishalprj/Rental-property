@@ -4,9 +4,18 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { deleteCartItem, useGetCartList } from "@/app/store/queries";
 import useGetUser from "@/app/utils/useGetUser";
+
+export type CheckoutFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  cardNumber: string;
+  expiryDate: string;
+  cvv: string;
+};
 
 const Checkout = () => {
   const { userId } = useGetUser();
@@ -14,7 +23,7 @@ const Checkout = () => {
   const cartItem = data?.cartItems;
   const totalCost = data?.totalCost;
 
-  const [totalPrice, setTotalPrice] = useState(totalCost);
+  const [totalPrice, setTotalPrice] = useState(totalCost || 0);
   const [gst] = useState(0.18);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +32,7 @@ const Checkout = () => {
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm({ mode: "onChange" });
+  } = useForm<CheckoutFormData>({ mode: "onChange" });
 
   useEffect(() => {
     if (totalCost !== undefined) {
@@ -31,7 +40,7 @@ const Checkout = () => {
     }
   }, [totalCost]);
 
-  const handleCheckout = async (data: any) => {
+  const handleCheckout: SubmitHandler<CheckoutFormData> = async (data) => {
     setIsLoading(true);
     try {
       const payload = {
