@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const Card = ({ property }: any) => {
   const router = useRouter();
@@ -7,10 +7,12 @@ const Card = ({ property }: any) => {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
       <div className="transition-transform duration-300">
-        <img
+        <Image
           src={property.images[0]}
           alt={property.title}
           className="w-full h-48 object-cover"
+          width={400}
+          height={200}
         />
       </div>
       <div className="p-4 flex flex-col flex-grow">

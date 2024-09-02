@@ -15,3 +15,16 @@ export type QueryResult = {
   data: Property[] | undefined;
   isLoading: boolean;
 };
+
+export type CartPayload = {
+  userId: string | null;
+  propertyId: string | string[];
+  checkInDate: string | undefined;
+  checkOutDate: string | undefined;
+};
+
+export type RemoveCartPayload = {
+  userId: string | null;
+  cartId: string;
+  cartItemId: string;
+};

@@ -1,16 +1,22 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
-import toast from 'react-hot-toast';
-
+import toast from "react-hot-toast";
+import { CartPayload, RemoveCartPayload } from "../type";
 
 // Login user
-
-export const loginUser = async (payload:{email:string,password:string}) => {
+export const loginUser = async (payload: {
+  email: string;
+  password: string;
+}) => {
   return axios.post("/api/user/login", payload);
 };
 
 // Register user
-export const registerUser = async (payload:{email:string,password:string,name:string}) => {
+export const registerUser = async (payload: {
+  email: string;
+  password: string;
+  name: string;
+}) => {
   return axios.post("/api/user/signup", payload);
 };
 
@@ -37,7 +43,7 @@ export const useGetSingleProperty = (id: string | string[]) => {
 };
 
 // Add to cart
-export const addToCart = async (payload: any) => {
+export const addToCart = async (payload: CartPayload) => {
   return axios.patch("/api/cart/add", payload);
 };
 
@@ -54,7 +60,7 @@ export const useGetCartList = (userId: string | null) => {
 };
 
 // Remove cart item
-export const removeCartItem = async (payload: any) => {
+export const removeCartItem = async (payload: RemoveCartPayload) => {
   return axios.patch("/api/cart/remove", payload);
 };
 
@@ -71,7 +77,7 @@ export const useRemoveCartItem = () => {
 };
 
 // Update cart item
-export const updateCartItem = async (payload: any) => {
+export const updateCartItem = async (payload: CartPayload) => {
   return axios.patch("/api/cart/add", payload);
 };
 
