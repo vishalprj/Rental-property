@@ -10,7 +10,6 @@ const AuthModals = ({ onLoginSuccess, onClose }: any) => {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-
   const handleLogin = async () => {
     setIsLoading(true);
     try {

@@ -39,6 +39,11 @@ const Navbar = () => {
     setUsername("");
   };
 
+  const handleLogin = () => {
+    router.push("/");
+    setLoginOpen(true);
+  };
+
   return (
     <>
       <nav className="bg-white shadow-md p-4">
@@ -78,7 +83,7 @@ const Navbar = () => {
                 </Button>
               </div>
             ) : (
-              <Button variant="link" onClick={() => setLoginOpen(true)}>
+              <Button variant="link" onClick={handleLogin}>
                 Login
               </Button>
             )}
